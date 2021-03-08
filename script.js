@@ -22,22 +22,10 @@ require([
         zoom: 9
       });
 
-      /*************************************************************
-       * The PopupTemplate content is the text that appears inside the
-       * popup. {fieldName} can be used to reference the value of an
-       * attribute of the selected feature. HTML elements can be used
-       * to provide structure and styles within the content. The
-       * fieldInfos property is an array of objects (each object representing
-       * a field) that is use to format number fields and customize field
-       * aliases in the popup and legend.
-       **************************************************************/
 
       var template = { // autocasts as new PopupTemplate()
         title: "Neighborhood: {NHD_NAME}",
         content: [{
-          // It is also possible to set the fieldInfos outside of the content
-          // directly in the popupTemplate. If no fieldInfos is specifically set
-          // in the content, it defaults to whatever may be set within the popupTemplate.
           type: "fields",
           fieldInfos: [{
             fieldName: "NHD_NUM",
@@ -50,17 +38,15 @@ require([
 
      var symbol = {
       type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
-      url: "https://images.app.goo.gl/ue6hSoAbwjuUqYsN9",
+      url: "https://static.arcgis.com/images/Symbols/Shapes/BlackStarLargeB.png",
       width: "48px",
-      height: "48px"
+      height: "48px",
 };
   var renderer = {
       type: "simple",  // autocasts as new SimpleRenderer()
       symbol: symbol
     };
   
-      // Reference the popupTemplate instance in the
-      // popupTemplate property of FeatureLayer
       var featureLayer = new FeatureLayer({
         url: "https://services2.arcgis.com/bB9Y1bGKerz1PTl5/ArcGIS/rest/services/STL_Neighborhood/FeatureServer/0",
         outFields: ["*"],
@@ -69,9 +55,7 @@ require([
       });
   
       map.add(featureLayer);
-  
-
-   /*
+  /*
       featureLayer.renderer = {
       type: "simple",  // autocasts as new SimpleRenderer()
       symbol: {
@@ -84,4 +68,5 @@ require([
         }
       }
     };*/
+  
     });
